@@ -1,11 +1,11 @@
-FROM rawmind/alpine-tools:3.5-1
-MAINTAINER Raul Sanchez <rawmind@gmail.com>
+FROM registry.devops.connectedfleet.io/alpine-tools:3.5-2
+MAINTAINER Forest Johnson <fjohnson@peoplenetonline.com>
 
 ENV SERVICE_ARCHIVE=/opt/rancher-tools.tgz \
     GOMAXPROCS=2 \
     GOROOT=/usr/lib/go \
     GOPATH=/opt/src \
-    GOBIN=/gopath/bin 
+    GOBIN=/gopath/bin
 
 # Add files
 ADD root /
@@ -18,4 +18,4 @@ RUN apk add --no-cache go git musl-dev && \
     cd ${SERVICE_VOLUME} && \
     tar czvf ${SERVICE_ARCHIVE} * && \
     apk del go git musl-dev && \
-    rm -rf /var/cache/apk/* /opt/src ${SERVICE_VOLUME}/* 
+    rm -rf /var/cache/apk/* /opt/src ${SERVICE_VOLUME}/*
